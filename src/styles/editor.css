@@ -1,0 +1,37 @@
+#editor {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 25px;
+    align-self: center;
+}
+.quill {
+    width: 100%;
+
+}
+.ql-container {
+    min-height: 350px;
+}
+.buttons {
+    align-self: flex-end;
+    display: flex;
+}
+
+button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    box-sizing: border-box;
+    padding: 1.6rem 2.4rem;
+    border-radius: 100px;
+    font-family: Polysans median,sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    transition: .3s;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+}
