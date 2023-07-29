@@ -1,0 +1,30 @@
+
+
+form#customer_login {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chakra-stack.css-1811skr {
+    width: 350px;
+}
+.account-message-error {
+    color: #f05d5d;
+    background-color: #f7dddd;
+    padding: 0.23rem 0.703125rem;
+    margin-bottom: 1rem;
+    grid-column: 1/3;
+}
+
+.account-message-error ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+.account-message-error li {
+    padding: 0;
+    text-align: left;
+}

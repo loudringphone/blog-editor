@@ -1,25 +1,23 @@
 import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import EditorToolbar, { modules, formats } from './EditorToolbar'
+import { motion } from "framer-motion";
+
 import 'react-quill/dist/quill.snow.css';
 import '../styles/editor.css'
 const Editor: React.FC = () => {
-  const [value, setValue] = useState<string>('');
+  const [content, setContent] = useState<string>('');
   const editorRef = useRef<ReactQuill | null>(null);
-  const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']
-    ]
-  };
+  const quillImageCallBack = () => {
+    alert('ttrtrt')
+  }
+  
   const handleCancel = () => {
     alert("The draft has been saved.")
   };
   const handleSave = () => {
-    console.log(value);
+    console.log(content);
   };
   const handleEditorFocus = () => {
     if (editorRef.current) {
@@ -28,11 +26,22 @@ const Editor: React.FC = () => {
   };
   return (
     <div id="editor" onClick={handleEditorFocus}>
-    <ReactQuill ref={(instance) => (editorRef.current = instance)} theme="snow" modules={modules} value={value} onChange={setValue} />
+    <EditorToolbar />
+    <ReactQuill ref={(instance) => (editorRef.current = instance)} theme="snow" modules={modules} value={content} onChange={setContent} />
     <ButtonGroup className="buttons">
-    <Button className="button" variant="secondary" onClick={handleCancel}>Cancel</Button>
-    <Button className="button" variant="primary" onClick={handleSave}>Save</Button>
+      <motion.div whileTap={{scale: 0.9}}>
+
+    <Button className="button" variant="secondary" onClick=
+      {handleCancel} width="85px">Cancel</Button>
+      </motion.div>
+
+    <motion.div whileTap={{scale: 0.9}}>
+
+    <Button className="button" variant="primary" onClick={handleSave} width="85px">Save</Button>
+    </motion.div>
+
     </ButtonGroup>
+    
     </div>
   );
 };
