@@ -1,0 +1,21 @@
+.chakra-card__header.css-1sl53ol {
+    padding: 0;
+}
+.chakra-card.css-gofeqz {
+    overflow: hidden;
+    max-width: 270.25px;
+}
+p.chakra-text.css-0 {
+    text-align: left;
+    font-weight: bold;
+    margin: 0.5rem 0 0.5rem 0;
+}
+.chakra-card__footer.css-6abeq5 {
+    padding-top: 0;
+    justify-content: right;
+}
+.subtitle, .date {
+    display: flex;
+    font-size: 0.9rem;
+    color: #0e7f5c;
+}

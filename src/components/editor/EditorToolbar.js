@@ -1,5 +1,6 @@
 import React from "react";
 import { Quill } from "react-quill";
+import { insertImage } from "../../functions/insertImage";
 
 const CustomUndo = () => (
   <svg viewBox="0 0 18 18">
@@ -35,19 +36,7 @@ function undoChange() {
 function redoChange() {
   this.quill.history.redo();
 }
-function imageInsert() {
-    const imageUrl = prompt("Enter image URL:"); // Prompt the user for image URL
-    if (imageUrl) {
-      const range = this.quill.getSelection();
-      if (range) {
-        this.quill.insertEmbed(range.index, "image", imageUrl, Quill.sources.USER);
-        const imageElement = this.quill.container.querySelector(`img[src="${imageUrl}"]`);
-      if (imageElement) {
-        imageElement.style.maxHeight = "300px";
-      }
-      }
-    }
-}
+
 
 // Add sizes to whitelist and register them
 const Size = Quill.import("formats/size");
@@ -57,8 +46,8 @@ Quill.register(Size, true);
 // Add fonts to whitelist and register them
 const Font = Quill.import("formats/font");
 Font.whitelist = [
+  "Poppins",
   "arial",
-  "comic-sans",
   "courier-new",
   "georgia",
   "helvetica",
@@ -73,7 +62,7 @@ export const modules = {
     handlers: {
       undo: undoChange,
       redo: redoChange,
-      image: imageInsert,
+      image: insertImage,
     }
   },
   history: {
@@ -87,7 +76,6 @@ export const modules = {
 export const formats = [
   "header",
   "font",
-  "size",
   "bold",
   "italic",
   "underline",
@@ -109,19 +97,13 @@ export const formats = [
 export const QuillToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
-      <select className="ql-font" defaultValue="arial">
+      <select className="ql-font" defaultValue="Poppins">
+        <option value="Poppins">Poppins</option>
         <option value="arial">Arial</option>
-        <option value="comic-sans">Comic Sans</option>
         <option value="courier-new">Courier New</option>
         <option value="georgia">Georgia</option>
         <option value="helvetica">Helvetica</option>
         <option value="lucida">Lucida</option>
-      </select>
-      <select className="ql-size" defaultValue="medium">
-        <option value="extra-small">Size 1</option>
-        <option value="small">Size 2</option>
-        <option value="medium">Size 3</option>
-        <option value="large">Size 4</option>
       </select>
       <select className="ql-header" defaultValue="3">
         <option value="1">Heading</option>

@@ -1,0 +1,64 @@
+li.image-item {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 0.5em;
+    background-color: #f55e3038;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 1.2em 1.5em;
+
+    svg {
+        color: #f55321;
+        cursor: pointer;
+        margin-right: 0.3rem;
+
+    }
+
+    a.image-url {
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+    }
+
+    .actions {
+        display: flex;
+        justify-self: flex-end;
+        place-items: center;
+    }
+    .copyToClipboard {
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+    .copied {
+        position: absolute;
+        top: -20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        height: 25px;
+        border-radius: 0.4rem;
+        animation-name: fadeInOut;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        p {
+            text-wrap: nowrap;
+            font-size: x-small;
+            color: '#0b5d51';
+            padding: 0 !important;
+        }
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

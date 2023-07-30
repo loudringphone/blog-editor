@@ -1,8 +1,16 @@
-import React from 'react'
-import { Card, CardHeader, Flex, Box, Heading, Text, CardBody, Image,CardFooter, Button } from '@chakra-ui/react'
+import { Card, CardHeader, Text, CardBody, Image,CardFooter, Button } from '@chakra-ui/react'
+import { Timestamp } from "firebase/firestore";
 import EditLineIcon from 'remixicon-react/EditLineIcon';
+import { formatDate } from '../functions/formateDate';
+import { NavLink } from 'react-router-dom';
+import { motion } from "framer-motion";
 
-const PostCard = () => {
+import '../styles/card.css'
+const PostCard = (props) => {
+  const {post} = props
+  const postDate = formatDate(new Timestamp(post.date.seconds, post.date.nanoseconds).toDate())
+
+  console.log(postDate)
   return (
     <Card maxW='xs' margin='0'>
   <CardHeader>
@@ -15,9 +23,11 @@ const PostCard = () => {
    
   </CardHeader>
   <CardBody>
+    <span className="subtitle"> {post.subtitle}</span>
     <Text>
-      With Chakra UI, I wanted to sync the speed of development with 
+      {post.preview}
     </Text>
+    <span className="date">{postDate}</span>
   </CardBody>
   
 
@@ -30,9 +40,15 @@ const PostCard = () => {
       },
     }}
   >
+    <motion.div whileTap={{scale: 0.9}}>
+    <NavLink to={`/edit/${post.id}`}>
     <Button flex='1' variant='ghost' leftIcon={<EditLineIcon />}>
       Edit
     </Button>
+    </NavLink>
+    </motion.div>
+
+
    
    
   </CardFooter>

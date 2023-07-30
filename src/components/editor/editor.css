@@ -1,7 +1,7 @@
 #editor {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 595.8px;
     align-self: center;
 }
 .quill {
@@ -9,7 +9,7 @@
 
 }
 .ql-container {
-    min-height: 350px;
+    /* min-height: 350px; */
 }
 .buttons {
     margin-top: 25px;

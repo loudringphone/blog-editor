@@ -91,7 +91,7 @@ const {currentUser} = props
             </span>
           </div>
           <NavLink className="logo" to='/'>
-            <h3>BLOG</h3>
+            <h3>BLOG EDITOR</h3>
           </NavLink>
         </div>
 
