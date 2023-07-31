@@ -40,12 +40,7 @@ export const Layout = () => {
         <main>
           <Routers currentUser={currentUser}/>
         </main>
-      {pathname === '/checkouts' ? (
-        <></>
-      ):(
-        // <Footer />
-        <div className='footer'>footer</div>
-      )}
+      
     </>
   )
 }
