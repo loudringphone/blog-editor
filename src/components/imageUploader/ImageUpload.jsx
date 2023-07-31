@@ -2,17 +2,15 @@ import { useRef, useState } from 'react';
 import FileAddLineIcon from 'remixicon-react/FileAddLineIcon';
 import './imageUploader.scss'
 import { Button } from '@chakra-ui/react'
-import { storage } from '../../firebase_setup/firebase'
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage"
+import { db, storage } from '../../firebase_setup/firebase'
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
+import { updateDoc, doc } from "firebase/firestore"
 import processing from '../../assets/images/loading.gif'
 import { v4 as uuidv4 } from 'uuid';
 import { getCurrentDate } from '../../functions/getCurrentDate';
-import { motion } from "framer-motion";
 
-const ImageUpload = ({ currentUser, imgQty }) => {
+const ImageUpload = ({ currentUser, images, isUpdated, postId }) => {
     const imageInputRef = useRef(null);
-    const [uploaded, setUploaded] = useState(false);
-    const [imgUrl, setImgUrl] = useState(null);
     const [progresspercent, setProgresspercent] = useState(0);
     const handleButtonClick = () => {
         imageInputRef.current.click();
@@ -20,12 +18,11 @@ const ImageUpload = ({ currentUser, imgQty }) => {
     const handleImageSelection = (event) => {
         const file = event.target.files[0];
         if(!file) return;
-          setUploaded(false)
           const fileExtension = file.name.split('.').pop();
           const imageName = getCurrentDate() + '-' + uuidv4() + '.' + fileExtension
           console.log(imageName)
           setProgresspercent(0.1);
-          const storageRef = ref(storage, `${currentUser.email}/images/${imageName}`);
+          const storageRef = ref(storage, `${currentUser.email}/${postId}/images/${imageName}`);
           const uploadTask = uploadBytesResumable(storageRef, file);
           uploadTask.on("state_changed", (snapshot) => {
             const progress =
@@ -33,19 +30,24 @@ const ImageUpload = ({ currentUser, imgQty }) => {
             setProgresspercent(progress);
             },
             (error) => {
-                alert(error);
-                setProgresspercent(0);
+              alert(error);
+              setProgresspercent(0);
             },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                setImgUrl(downloadURL)
-                setUploaded(true)
-                setProgresspercent(0);
-                });
+            async () => {
+              let imgURL
+              await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {imgURL = downloadURL})
+              const postRef = doc(db, "posts", postId);
+              images.push(imgURL)
+              await updateDoc(postRef, {
+                images: images
+              })
+              isUpdated(true)
+              setProgresspercent(0);
             }
           );
     }
-    if (imgQty >= 5) {
+    console.log(images)
+    if (images?.length >= 5) {
       return (
         <div className="image-card">
           <p className="main">Limit reached</p>

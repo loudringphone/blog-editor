@@ -1,0 +1,54 @@
+.title-block {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+    .label {
+      text-align: left;
+      max-width: max-content;
+      position: relative;
+      .form-field-select-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+      }
+    }
+    .blog-title {
+      margin: 30px 0 45px;
+      min-height: 190px;
+      font-size: 42px;
+      text-align: left;
+      cursor: pointer;
+
+      textarea {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        min-height: 375px;
+        width: 100%;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 42px;
+      }
+      textarea::placeholder {
+        color: lightgray
+      }
+    }
+    .small-title {
+      display: flex;
+      gap: 15px
+    }
+    p {
+      font-size: 20.45px;
+    }
+
+
+
+
+
+
+
+
+
+}

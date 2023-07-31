@@ -1,3 +1,8 @@
+.edit-article {
+    display: flex;
+    gap: 25px;
+}
+
 #editor {
     display: flex;
     flex-direction: column;
