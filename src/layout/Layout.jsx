@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import { db } from '../firebase_setup/firebase';
+import { doc, getDoc } from "firebase/firestore";
 import Header from '../components/header/Header';
 import Routers from '../routers/Routers';
 import useAuth from '../custom-hook/useAuth'
@@ -8,7 +10,21 @@ import useAuth from '../custom-hook/useAuth'
 export const Layout = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const currentUser = useAuth()
-
+  useEffect(() => {
+    if (currentUser) {
+      const fetchUserData = async () => {
+        try {
+          const userDocRef = doc(db, "users", currentUser.email);
+          const userSnapshot = await getDoc(userDocRef);
+          const userData = userSnapshot.data();
+          currentUser.name = userData.name;
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchUserData();
+    }
+  }, [currentUser])
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {

@@ -1,5 +1,8 @@
 .title-block {
   display: flex;
+  position: sticky;
+  height: 100%;
+  top: 105px;
   flex-direction: column;
   max-width: 350px;
     .label {
@@ -7,14 +10,13 @@
       max-width: max-content;
       position: relative;
       .form-field-select-wrapper {
-        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
     }
     .blog-title {
-      margin: 25px 0 45px;
+      margin: 15px 0 0;
       font-size: 42px;
       text-align: left;
       cursor: pointer;
@@ -22,14 +24,16 @@
         overflow: hidden;
         border: 1px solid #ccc;
         border-radius: 10px;
-        min-height: 375px;
+        min-height: 325px;
         width: 100%;
         font-family: sans-serif;
         font-weight: bold;
-        font-size: 42px;
+        font-size: 38px;
+        padding: 0.3rem 0.3rem;
       }
       textarea::placeholder {
-        color: lightgray
+        color: rgb(198, 197, 197);
+        font-weight: 400;
       }
     }
     .blog-preview {
@@ -43,12 +47,13 @@
         overflow: hidden;
         border: 1px solid #ccc;
         border-radius: 10px;
-        min-height: 225px;
+        min-height: 180px;
         width: 100%;
         font-size: 20.45px;
+        padding: 0.3rem 0.3rem;
       }
       textarea::placeholder {
-        color: lightgray
+        color: rgb(198, 197, 197);
       }
     }
     .small-title {
@@ -56,7 +61,8 @@
       gap: 15px
     }
     p {
-      font-size: 20.45px;
+      font-size: 1.2rem;
+      padding: 0;
     }
     
 

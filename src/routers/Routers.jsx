@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Edit from '../pages/Edit'
+import Create from '../pages/Create'
 import Login from "../pages/Login";
+import Post from "../pages/Post";
 import Posts from "../pages/Posts";
-// import Logout from '../pages/Logout'
+import Logout from '../pages/Logout'
 
 import ProtectedRoute from "./ProtectedRoute";
-import useAuth from '../custom-hook/useAuth'
 
 
 const Routers = (props) => {
@@ -19,19 +20,35 @@ const Routers = (props) => {
             setPrevLocation(pathname);
         }
       }, [pathname]);
-
     return (
         <Routes>
-            <Route path='/' element={<Posts />} />
-            <Route path='posts' element={<Posts />} />
-            <Route path='edit/:postId' element={<Edit currentUser={currentUser}/>} />
-            <Route path='checkouts' element={
-                <ProtectedRoute>
-                    <Route path='edit/:postId' element={<Edit currentUser={currentUser}/>} />
-                </ProtectedRoute>}
-            />
-            <Route path='account/login' element={<Login prevLocation={prevLocation} />} />
-           
+          <Route path='/' element={<Posts currentUser={currentUser} />} />
+          <Route path='posts' element={<Posts currentUser={currentUser} />} />
+          <Route path='account/login' element={<Login prevLocation={prevLocation} />} />
+          <Route path='post/:postId' element={<Post currentUser={currentUser} />} />
+
+
+          <Route path='edit/:postId' element={
+            <ProtectedRoute>
+              <Edit currentUser={currentUser} />
+            </ProtectedRoute>} />
+          <Route path='create' element={
+            <ProtectedRoute>
+              <Create currentUser={currentUser} />
+            </ProtectedRoute>} />
+          <Route path='create/:postId' element={
+            <ProtectedRoute>
+              <Edit currentUser={currentUser} />
+            </ProtectedRoute>} />
+          <Route path='my-posts' element={
+            <ProtectedRoute>
+              <Posts currentUser={currentUser} myPosts={true}/>
+            </ProtectedRoute>} />
+          <Route path='account/logout' element={
+            <ProtectedRoute>
+              <Logout />
+            </ProtectedRoute>} />
+          
             {/* <Route path='account' element={<MyAccount currentUser={currentUser} />} />
             <Route path='account/logout' element={<Logout/>} /> */}
         </Routes>

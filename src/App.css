@@ -6,11 +6,21 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  background-color: #fdfcf8;
 }
 
 main {
   min-height: 80vh;
+  margin-top: 0px;
   padding: 20px 10px;
+  display: flex !important;
+  flex-direction: column;
+}
+section {
+  margin-top: 50px;
+}
+section.edit {
+  margin-top: 0px;
 }
 p {
   font-size: 16px;
@@ -27,4 +37,32 @@ h2 {
 h1 {
   font-family: sans-serif;
   font-weight: bold;
+}
+
+.toast-message {
+  display: flex;
+  align-items: center;
+}
+.toast-text span{
+  font-weight: 700 !important;
+}
+.custom-toast-error {
+  background: #F7DDDD !important;
+  color: #F05D5D !important;
+}
+
+.custom-toast-error button {
+  color: red;
+}
+@media (min-width: 520px) {
+  .Toastify {
+      width: auto;
+  }
+  
+  .toastBody {
+      min-width: 450px !important;
+      padding-left: 75px !important;
+      padding-right: 50px !important;
+  }
+
 }

@@ -6,7 +6,7 @@
 .image-uploader {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    max-width: 300px;
 
     .title {
         text-align: left;
@@ -22,7 +22,7 @@
     align-items: center;
     border: 3px dashed #cbd5e0;
     background-color: #edf2f7;
-    min-width: 300px;
+    max-width: 300px;
     min-height: 130px;
 
     .image-inputs {
@@ -32,7 +32,6 @@
         input {
             position: relative;
             text-align: right;
-            opacity: 0;
             z-index: 2;
             cursor: pointer;
             height: 46px;

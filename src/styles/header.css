@@ -3,6 +3,7 @@ a.logo {
 }
 a.logo h3 {
     line-height: 1;
+    color: #0b5d51;
 }
 
 
@@ -29,9 +30,9 @@ header.header {
     width: 100%;
     position: sticky !important;
     top: 0 !important;
-    background-color: white;
+    background-color: #fdfcf8;
     z-index: 100;
-    box-shadow: 0 1px 4px #7d7d7d1c;
+    box-shadow: 0 1px 4px rgba(125, 125, 125, 0.3);
     transition: all 0.2s;
     overflow: visible;
     display: flex;

@@ -1,11 +1,11 @@
 import React from 'react';
 import LoginComponent from '../components/LoginComponent';
 
-const Login = () => {
+const Login = ({prevLocation}) => {
 
     return (
         <section className='login'>
-            <LoginComponent />
+            <LoginComponent prevLocation={prevLocation} />
         </section>
     )
 

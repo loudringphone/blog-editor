@@ -3,14 +3,6 @@ import ImageUpload from './ImageUpload'
 import ImageList from './ImageList'
 
 const ImageUploader = ({currentUser, images, postId, isUpdated}) => {
-    // const [uploaded, setUploaded] = useState(false);
-
-    // useEffect(() => {
-    //     if (uploaded) {
-
-    //       setUploaded(false)
-    //     }
-    // }, [uploaded]);
 
     return (
         <div className="image-uploader">

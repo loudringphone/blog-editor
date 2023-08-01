@@ -5,38 +5,26 @@ import Editor from '../components/editor/Editor';
 import ImageUploader from '../components/imageUploader/ImageUploader';
 import { db } from '../firebase_setup/firebase';
 import '../styles/edit.css';
-const Edit = (props) => {
-    const {currentUser} = props
+const Edit = ({currentUser}) => {
     let {postId} = useParams()
     const [post, setPost] = useState([]);
-    const [user, setUser] = useState([]);
     const [updated, setUpdated] = useState(false);
     const [loading, setLoading] = useState(true);
     const userEmail = currentUser.email
     useEffect(() => {
-      const fetchData = async () => {
+      const fetchPost = async () => {
         try {
           const postDocRef = doc(db, "posts", postId);
-          const userDocRef = doc(db, "users", userEmail);
-  
-          // Fetch both post and user data asynchronously
-          const [postSnapshot, userSnapshot] = await Promise.all([
-            getDoc(postDocRef),
-            getDoc(userDocRef)
-          ]);
-  
+          const postSnapshot = await getDoc(postDocRef);
           const postData = postSnapshot.data();
-          const userData = userSnapshot.data();
-  
           setPost({ id: postSnapshot.id, ...postData });
-          setUser({ id: userSnapshot.id, ...userData });
           setLoading(false);
         } catch (error) {
           console.error(error);
           setLoading(false);
         }
       };
-      fetchData();
+      fetchPost();
     }, [postId, userEmail]);
     
     useEffect(() => {
@@ -44,7 +32,7 @@ const Edit = (props) => {
         const fetchPost = async () => {
           try {
             const postDocRef = doc(db, "posts", postId);
-            const postSnapshot = await Promise(getDoc(postDocRef));
+            const postSnapshot = await getDoc(postDocRef);
             const postData = postSnapshot.data();
             setPost({ id: postSnapshot.id, ...postData });
           } catch (error) {
@@ -61,14 +49,14 @@ const Edit = (props) => {
 
       if (loading) {
         return (
-            <section className='edit'>
+            <section>
             <p>Fetching the article...</p>
             </section>
         )
       }
   
       
-    else if (post && user && post.author != user.name) {
+    else if (post && currentUser && post.author != currentUser.name) {
         return (
             <section className='edit'>
                 <p>You have no access rights to edit this article.</p>

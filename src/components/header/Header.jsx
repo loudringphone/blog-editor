@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import MenuLineIcon from 'remixicon-react/MenuLineIcon';
 import CloseLineIcon from 'remixicon-react/CloseLineIcon';
 import HomeLineIcon from 'remixicon-react/HomeLineIcon';
@@ -10,18 +10,28 @@ import '../../styles/header.css';
 
 
 const Header = (props) => {
+const {pathname} = useLocation();
+const currentPath =  pathname.split('/')[1]
+console.log(currentPath)
 const {currentUser} = props
   let nav_links
 
-  if (currentUser) {
+  if (currentUser && currentPath != 'create') {
     nav_links = [
-        {path: 'posts', display: 'Posts'},
-        {path: 'account', display: 'My account'},
+        {path: 'posts', display: 'All posts'},
+        {path: 'create', display: 'Create post'},
+        {path: 'my-posts', display: 'My posts'},
         {path: 'account/logout', display: 'Logout'},
         ];
+  } else if (currentUser && currentPath == 'create') {
+    nav_links = [
+      {path: 'posts', display: 'All posts'},
+      {path: 'my-posts', display: 'My posts'},
+      {path: 'account/logout', display: 'Logout'},
+      ];
   } else {
     nav_links = [
-        {path: 'posts', display: 'Posts'},
+        {path: 'posts', display: 'All posts'},
         {path: 'account/login', display: 'Login'},
         ];
   }
@@ -76,9 +86,6 @@ const {currentUser} = props
     }, 200);
   };
 
-  const handleClick = () => {
-    setHeaderStyle({ overflow: 'visible' });
-  };
 
   return (
     <>

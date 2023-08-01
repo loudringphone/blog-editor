@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from "reactstrap";
+import { useState, useEffect } from 'react'
 import PostCard from './PostCard';
 import { db } from '../firebase_setup/firebase';
-import { collection, query, getDocs, Timestamp } from "firebase/firestore";
+import { collection, query, where, getDocs, Timestamp } from "firebase/firestore";
+import '../styles/posts.css'
+import processing from '../assets/images/loading.gif'
 
-
-
-  
-  const PostList = () => {
+const PostList = ({currentUser, myPosts}) => {
     const [posts, setPosts] = useState([]);
-  
-    // Fetch the posts from Firebase
-  
+    const [updated, setUpdated] = useState(true);
+    const [loading, setLoading] = useState(true);
     const fetchPosts = async () => {
-      const q = query(collection(db, "posts"))
+      console.log(currentUser)
+      let q = query(collection(db, "posts"), where("draft", "==", false))
+      if (currentUser?.email && myPosts) {
+        q = query(collection(db, "posts"), where("email", "==", currentUser.email))
+      }
       await getDocs(q)
       .then((querySnapshot) => {
         const newData = querySnapshot.docs
@@ -32,26 +33,43 @@ import { collection, query, getDocs, Timestamp } from "firebase/firestore";
             return bTime - aTime; // sort by createdAt field
             }
         });
-        setPosts(newData);
+          setPosts(newData);
+          if (currentUser == null || Object.keys(currentUser).length > 0) {
+            setLoading(false)
+          }
       })
     }
-    
     useEffect(()=>{
       fetchPosts()
-    }, [])
+    }, [currentUser])
+    useEffect(()=>{
+      if (!updated) {
+        fetchPosts()
+        setUpdated(true)
+      }
+    }, [updated])
     
-  
+    const isUpdated = (boolean) => {
+      setUpdated(boolean);
+    };
+
+    if (loading) {
+      return (
+        <section>
+          <div className="processing">
+            <img src={processing} alt="processing" style={{height: '18px'}}/>Fetching posts...
+          </div>
+        </section>
+      )
+    }
+
     return (
       <section>
-        <Container>
-          <Row>
-            <Col lg="12" className="post_list">
+        <div className='post-list'>
               {posts?.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.id} post={post} userEmail={currentUser?.email} myPosts={myPosts} isUpdated={isUpdated} />
               ))}
-            </Col>
-          </Row>
-        </Container>
+         </div>  
       </section>
     );
   };

@@ -3,17 +3,39 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ToastContainer } from "react-toastify";
+import { Slide } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const toastContainerStyle = {
+  width: window.innerWidth > 600 ? "auto" : "100%",
+};
+const toastContainerPosition = window.innerWidth <= 600 ? "bottom-center" : "top-center";
+
+window.addEventListener("resize", () => {
+  toastContainerStyle.width = window.innerWidth > 600 ? "auto" : "100%";
+});
+
 root.render(
   <React.StrictMode>
+    <ToastContainer
+      style={toastContainerStyle}
+      bodyClassName="toastBody" 
+      position={toastContainerPosition}
+      hideProgressBar={true}
+      autoClose={3500}
+      newestOnTop={false}
+      closeOnClick
+      pauseOnHover
+      theme="light"
+      transition={Slide}
+    />
+      
     <App />
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

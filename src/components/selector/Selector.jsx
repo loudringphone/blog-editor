@@ -1,8 +1,8 @@
-import React, { useState, useRef} from 'react'
-import ArrowDownSLineIcon from 'remixicon-react/ArrowDownSLineIcon';
+import { useState, useRef} from 'react'
 import './selector.scss'
 import { capitaliseFirstLetter } from '../../functions/capitaliseFirstLetter';
-const Selector = ({postLabel, updatingLabel, style}) => {
+
+const Selector = ({postLabel, updatingLabel}) => {
   const [updatedLabel, setUpdatedLabel] = useState(null)
   const [input, setInput] = useState(false)
   const inputRef = useRef()
@@ -10,6 +10,7 @@ const Selector = ({postLabel, updatingLabel, style}) => {
     const value = e.target.value;
     if (value === '') {
       setUpdatedLabel('')
+      setInput(true)
     }
     else if (value != 'Custom') {
       setUpdatedLabel(capitaliseFirstLetter(value))
@@ -38,16 +39,18 @@ const Selector = ({postLabel, updatingLabel, style}) => {
   }
 
   return (
-    <div className="form-field-select-wrapper" style={style}>
+    <div className="form-field-select-wrapper">
       <select
         className="form-field"
         style={input ? { display: 'none' } : { display: 'block' }}
         onChange={handleLabelChange}
-        value={updatedLabel || postLabel}
+        
+        value={(updatedLabel || postLabel) || 'Add'}
       >
+        <option value="Add">Add label</option>
         <option value="Tips">Tips</option>
         <option value="Recycling">Recycling</option>
-        <option value="Custom">Add label</option>
+        <option value="Custom">Custom label</option>
 
       </select>
       <input
@@ -61,7 +64,7 @@ const Selector = ({postLabel, updatingLabel, style}) => {
         style={input ? { display: 'block' } : { display: 'none' }}
       />
 
-      <ArrowDownSLineIcon size={20} style={input ? { display: 'none' } : { display: 'block' }} />
+      {/* <ArrowDownSLineIcon size={20} style={input ? { display: 'none' } : { display: 'block' }} /> */}
     </div>
   )
 }

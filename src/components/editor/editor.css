@@ -1,20 +1,38 @@
 .edit-article {
+    position: relative;
     display: flex;
     gap: 30px;
+    height: max-content;
 }
 
 #editor {
     display: flex;
+    position: relative;
     flex-direction: column;
-    width: 600px;
+    max-width: 720px;
+}
+#editor p.placeholder {
+    position: absolute;
+    text-align: left;
+    top: 70px;
+    left: 20px;
+    width: 100%;
+    font-size: 42px;
+    color: rgb(198, 197, 197);
 }
 .quill {
     width: 100%;
+    background-color: white;
 
+}
+#toolbar {
+    background-color: white;
 }
 .ql-container {
     max-height: 600px;
     overflow: auto;
+    min-height: 300px;
+
 }
 
 .ql-container p {
@@ -33,4 +51,35 @@
     display: flex;
     justify-content: right;
 }
+
+#editor input.chakra-input {
+    background-color: white;
+    border: 1px solid #ccc;
+    height: 30px;
+    padding: 0 0.3rem;
+}
+
+label.chakra-checkbox.css-1577qb8 {
+    margin-top: 1rem;
+    margin-left: auto;
+}
+.img-placeholder {
+    position: relative;
+    height: 150px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+.img-placeholder img{
+    height: 100%;
+}
+.cover-image {
+    padding: 0;
+    position: absolute;
+    color: lightgrey;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
