@@ -8,7 +8,7 @@ import { updateDoc, doc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import 'react-quill/dist/quill.snow.css';
 import './editor.css'
-import { Checkbox, Input, Button, ButtonGroup } from '@chakra-ui/react'
+import { Checkbox, Input, Button, ButtonGroup, Textarea } from '@chakra-ui/react'
 import { deletePost } from '../../functions/deletePost';
 import { useNavigate } from 'react-router-dom';
 
@@ -98,7 +98,7 @@ const Editor = ({post}) => {
         { imageUrl ?
           <img src={imageUrl} alt={imageUrl} />
           :<></>}
-        <h2 className="cover-image">Cover image</h2>
+        <h2 className="cover-image-text">Cover image</h2>
 
         </div>
       <div id="editor">

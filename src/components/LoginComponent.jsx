@@ -8,6 +8,7 @@ import Key2LineIcon from 'remixicon-react/Key2LineIcon';
 import { motion } from "framer-motion";
 import processing from '../assets/images/loading.gif'
 import '../styles/login.css'
+import { toast } from "react-toastify"
 
 const LoginComponent = ({prevLocation}) => {
     const {pathname} = useLocation()
@@ -33,13 +34,12 @@ const LoginComponent = ({prevLocation}) => {
         setLoading(true)
         setErrorMessageDisplay({display: "none"})
         setErrorIncorrectLoginDisplay({display: "none"})
-        console.log(email)
-        console.log(password)
-
         try {
           const userCredential = await signInWithEmailAndPassword(auth, email, password)
-          const user = userCredential.user
-          console.log(user.uid)
+          // const user = userCredential.user
+          // console.log(user.uid)
+          toast.success("Successfully logged in.", { autoClose: 1500 });
+
           if (pathname === '/account/login') {
             navigate('/')
           } else {

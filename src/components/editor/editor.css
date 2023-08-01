@@ -1,3 +1,5 @@
+
+
 .edit-article {
     position: relative;
     display: flex;
@@ -63,6 +65,14 @@ label.chakra-checkbox.css-1577qb8 {
     margin-top: 1rem;
     margin-left: auto;
 }
+.cover-image {
+    display: flex;
+}
+.cover-image textarea {
+    height: 150px;
+    width: 200px;
+}
+
 .img-placeholder {
     position: relative;
     height: 150px;
@@ -73,7 +83,7 @@ label.chakra-checkbox.css-1577qb8 {
 .img-placeholder img{
     height: 100%;
 }
-.cover-image {
+.cover-image-text {
     padding: 0;
     position: absolute;
     color: lightgrey;
