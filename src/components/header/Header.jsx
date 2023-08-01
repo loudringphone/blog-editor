@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import MenuLineIcon from 'remixicon-react/MenuLineIcon';
 import CloseLineIcon from 'remixicon-react/CloseLineIcon';
 import HomeLineIcon from 'remixicon-react/HomeLineIcon';
-
 import '../../styles/header.css';
-
+// import { Beforeunload } from "react-beforeunload";
 
 
 
 const Header = (props) => {
-const {pathname} = useLocation();
-const currentPath =  pathname.split('/')[1]
-console.log(currentPath)
-const {currentUser} = props
+  const {pathname} = useLocation();
+  const currentPath =  pathname.split('/')[1]
+  const {currentUser} = props
+  const navigate = useNavigate
   let nav_links
 
   if (currentUser && currentPath != 'create') {
@@ -39,6 +38,7 @@ const {currentUser} = props
   const [headerStyle, setHeaderStyle] = useState(null);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [mobileMenuDisplay, setMobileMenuDisplay] = useState("none");
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 1020) {
@@ -86,6 +86,14 @@ const {currentUser} = props
     }, 200);
   };
 
+  const handleLeave = (e) => {
+    if (currentPath == 'edit' || currentPath == 'create') {
+      const leaveConfirmation = window.confirm("Are you sure you want to leave? Changes you made may not be saved.");
+      if (!leaveConfirmation) {
+        e.preventDefault();
+      }
+    }
+  };
 
   return (
     <>
@@ -97,7 +105,8 @@ const {currentUser} = props
               <MenuLineIcon size={30} />
             </span>
           </div>
-          <NavLink className="logo" to='/'>
+
+          <NavLink className="logo" to='/' onClick={handleLeave}>
             <h3>BLOG EDITOR</h3>
           </NavLink>
         </div>
@@ -108,6 +117,7 @@ const {currentUser} = props
               <NavLink
                 to={'/' + item.path}
                 className={(navClass) => navClass.isActive ? "nav_active" : ""}
+                onClick={handleLeave}
               >
                 {item.display}
               </NavLink>

@@ -11,7 +11,10 @@ import { deletePost } from '../functions/deletePost';
 import { toast } from "react-toastify"
 
 const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
-  const postDate = formatDate(new Timestamp(post.date.seconds, post.date.nanoseconds).toDate());
+  let postDate
+  if (post.date) {
+    postDate = formatDate(new Timestamp(post.date.seconds, post.date.nanoseconds).toDate());
+  }
   const handleDelete = () => {
     if (!post.draft) {
       return alert('Please set the post back to draft before deleting it.')

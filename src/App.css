@@ -55,14 +55,22 @@ h1 {
   color: red;
 }
 @media (min-width: 520px) {
+  
+
   .Toastify {
       width: auto;
   }
   
   .toastBody {
-      min-width: 450px !important;
-      padding-left: 75px !important;
-      padding-right: 50px !important;
+    min-width: 450px !important;
+    padding-left: 75px !important;
+    padding-right: 50px !important;
   }
 
+}
+
+@media (max-width: 1000px) {
+  section {
+    margin-top: 10px;
+  }
 }

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from "react-toastify";
 import { Slide } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { Beforeunload } from "react-beforeunload";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,6 +20,11 @@ window.addEventListener("resize", () => {
   toastContainerStyle.width = window.innerWidth > 600 ? "auto" : "100%";
 });
 
+
+const handleEditBeforeunload = () => {
+  
+  return 'Are you sure you want to leave? Changes you made may not be saved.'
+}
 root.render(
   <React.StrictMode>
     <ToastContainer
@@ -34,7 +40,9 @@ root.render(
       transition={Slide}
     />
       
+      
     <App />
+
   </React.StrictMode>
 );
 

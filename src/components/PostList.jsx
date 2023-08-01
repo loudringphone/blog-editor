@@ -10,7 +10,6 @@ const PostList = ({currentUser, myPosts}) => {
     const [updated, setUpdated] = useState(true);
     const [loading, setLoading] = useState(true);
     const fetchPosts = async () => {
-      console.log(currentUser)
       let q = query(collection(db, "posts"), where("draft", "==", false))
       if (currentUser?.email && myPosts) {
         q = query(collection(db, "posts"), where("email", "==", currentUser.email))
