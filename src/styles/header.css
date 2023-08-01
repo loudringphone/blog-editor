@@ -202,6 +202,9 @@ header a {
 }
 
 @media (max-width: 1020px) {
+    .mobile_nav ul.quick_links {
+        margin-top: 20px;
+    }
     div.nav_wrapper {
         width: 100%;
     }
@@ -304,4 +307,20 @@ header a {
         margin-right: 0;
     }
     
+}
+
+@media (max-width: 450px) {
+    a.logo h3 {
+        font-size: 40px !important;
+    }
+}
+@media (max-width: 375px) {
+    a.logo h3 {
+        font-size: 35px !important;
+    }
+}
+@media (max-width: 340px) {
+    a.logo h3 {
+        font-size: 30px !important;
+    }
 }

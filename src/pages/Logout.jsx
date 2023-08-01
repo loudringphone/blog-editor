@@ -33,7 +33,7 @@ const Logout = () => {
         } else {
           navigate('/');
         }
-      }, [currentUser, navigate, pathname]);
+      }, [currentUser, pathname]);
     
     return (
         <section className='logout'>
