@@ -39,10 +39,7 @@ root.render(
       theme="light"
       transition={Slide}
     />
-      
-      
     <App />
-
   </React.StrictMode>
 );
 

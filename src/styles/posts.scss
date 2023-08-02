@@ -3,6 +3,20 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1.75rem;
 }
+.title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    h1 {
+        font-size: 32px;
+    }
+    button.chakra-button {
+        border-radius: 50px;
+        padding: 20px 0;
+    }
+    
+}
 @media (max-width: 1000px) {
     .post-list {
         grid-template-columns: repeat(3, 1fr);

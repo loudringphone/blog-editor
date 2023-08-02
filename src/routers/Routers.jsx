@@ -21,12 +21,12 @@ const Routers = ({currentUser, editing}) => {
       }, [pathname]);
     return (
         <Routes>
-          <Route path='/' element={<Posts currentUser={currentUser} />} />
+          <Route path='/' element={<Posts currentUser={currentUser} home={true} />} />
+          <Route path='home' element={<Posts currentUser={currentUser} home={true} />} />
           <Route path='posts' element={<Posts currentUser={currentUser} />} />
+          <Route path='posts/:label' element={<Posts currentUser={currentUser} />} />
           <Route path='account/login' element={<Login prevLocation={prevLocation} />} />
           <Route path='post/:postId' element={<Post currentUser={currentUser} />} />
-
-
           <Route path='edit/:postId' element={
             <ProtectedRoute>
               <Edit currentUser={currentUser} editing={editing} />

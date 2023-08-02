@@ -175,9 +175,6 @@ div.mobile_menu span {
     display: contents;
     cursor: pointer;
 }
-.close_icon:hover {
-    color: red;
-}
 
 .mobile-nav-overlay {
     display: none;

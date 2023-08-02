@@ -1,16 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useLocation, NavLink, useParams } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Button } from '@chakra-ui/react'
 import PostCard from './PostCard';
 import { db } from '../firebase_setup/firebase';
 import { collection, query, where, getDocs, Timestamp } from "firebase/firestore";
-import '../styles/posts.css'
+import '../styles/posts.scss'
 import processing from '../assets/images/loading.gif'
 
-const PostList = ({currentUser, myPosts}) => {
+const PostList = ({currentUser, myPosts, label}) => {
+    const {pathname} = useLocation();
+    const params = useParams()
     const [posts, setPosts] = useState([]);
     const [updated, setUpdated] = useState(true);
     const [loading, setLoading] = useState(true);
     const fetchPosts = async () => {
       let q = query(collection(db, "posts"), where("draft", "==", false))
+    
+      if (label) {
+        q = query(
+          collection(db, "posts"),
+          where("draft", "==", false),
+          where("label", "==", label)
+        );
+      }
       if (currentUser?.email && myPosts) {
         q = query(collection(db, "posts"), where("email", "==", currentUser.email))
       }
@@ -40,7 +53,7 @@ const PostList = ({currentUser, myPosts}) => {
     }
     useEffect(()=>{
       fetchPosts()
-    }, [currentUser])
+    }, [currentUser, pathname])
     useEffect(()=>{
       if (!updated) {
         fetchPosts()
@@ -52,6 +65,11 @@ const PostList = ({currentUser, myPosts}) => {
       setUpdated(boolean);
     };
 
+    if (loading && label == 'Tips' && (pathname == '/' || pathname == '/home')) {
+      return (
+        <></>
+      )
+    }
     if (loading) {
       return (
         <section>
@@ -61,15 +79,43 @@ const PostList = ({currentUser, myPosts}) => {
         </section>
       )
     }
+    
+    if (pathname == '/' || pathname == '/home') {
+      return (
+        <>
+          <div className='title-wrapper'>
+            <h1>Ridly's {label}</h1>
+          
+            <motion.div whileTap={{scale: 0.9}}>
+            <NavLink className="logo" to={`/posts/${label.toLowerCase()}`}>
+
+              <Button className="button" size='lg' variant="primary" width="100px">View all</Button>
+            </NavLink>
+
+            </motion.div>
+          </div>
+          <div className='post-list'>
+            {posts?.map((post) => (
+              <PostCard key={post.id} post={post} userEmail={currentUser?.email} myPosts={myPosts} isUpdated={isUpdated} />
+            ))}
+          </div>  
+        
+        </>
+      )
+
+    }
 
     return (
-      <section>
+      <>
+        <div className='title-wrapper'>
+          <h1>All posts</h1>
+        </div>
         <div className='post-list'>
               {posts?.map((post) => (
                 <PostCard key={post.id} post={post} userEmail={currentUser?.email} myPosts={myPosts} isUpdated={isUpdated} />
               ))}
          </div>  
-      </section>
+      </>
     );
   };
   
