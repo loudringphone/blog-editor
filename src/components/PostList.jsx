@@ -7,6 +7,8 @@ import { db } from '../firebase_setup/firebase';
 import { collection, query, where, getDocs, Timestamp } from "firebase/firestore";
 import '../styles/posts.scss'
 import processing from '../assets/images/loading.gif'
+import { Helmet } from '../components/helmet/Helmet'
+import { capitaliseFirstLetter } from '../functions/capitaliseFirstLetter';
 
 const PostList = ({currentUser, myPosts, label}) => {
     const {labelId} = useParams()
@@ -89,7 +91,8 @@ const PostList = ({currentUser, myPosts, label}) => {
     
     if (labelId || pathname == '/' || pathname == '/home') {
       return (
-        <>
+        <Helmet title={labelId ? capitaliseFirstLetter(labelId) + (labelId == 'all'? " Posts" : "") : "Home"}>
+
           <div className='title-wrapper'>
             { labelId === 'all' ?
               <h1>All posts</h1>
@@ -111,22 +114,22 @@ const PostList = ({currentUser, myPosts, label}) => {
             ))}
           </div>  
         
-        </>
+          </Helmet>
       )
 
     }
 
     return (
-      <>
+      <Helmet title="My Posts">
         <div className='title-wrapper'>
-          <h1>All posts</h1>
+          <h1>All posts including drafts</h1>
         </div>
         <div className='post-list'>
               {posts?.map((post) => (
                 <PostCard key={post.id} post={post} userEmail={currentUser?.email} myPosts={myPosts} isUpdated={isUpdated} />
               ))}
          </div>  
-      </>
+      </Helmet>
     );
   };
   

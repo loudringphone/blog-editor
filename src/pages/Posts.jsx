@@ -4,6 +4,7 @@ import PostList from '../components/PostList';
 import { motion } from "framer-motion";
 import { Button } from '@chakra-ui/react'
 import processing from '../assets/images/loading.gif'
+import { Helmet } from '../components/helmet/Helmet'
 import '../styles/posts.scss'
 
 const Posts = ({currentUser, myPosts, home}) => {
@@ -16,14 +17,12 @@ const Posts = ({currentUser, myPosts, home}) => {
     if (pathname == '/' || pathname == '/home') {
       return (
         <>
-        <section className='posts'>
-       
+          <section className='posts'>
             <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='projects' />
-        </section>
-        <section className='posts'>
-             
+          </section>
+         <section className='posts'>
             <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='articles' />
-        </section>
+          </section>
         </>
         
       )

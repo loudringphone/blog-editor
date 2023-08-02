@@ -7,6 +7,7 @@ import { formatDate } from "../functions/formateDate";
 import { Timestamp } from "firebase/firestore";
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { Helmet } from '../components/helmet/Helmet'
 import processing from '../assets/images/loading.gif'
 import '../styles/post.scss';
 
@@ -52,6 +53,7 @@ const Post = ({currentUser}) => {
     )
     }
     return (
+      <Helmet title={post.title}>
         <section className='post'>
             <div className="title-block">
               <div className="blog-button">
@@ -82,6 +84,7 @@ const Post = ({currentUser}) => {
               <HtmlRenderer htmlString={post.article} />
             </div>
         </section>
+      </Helmet>
     )
 }
 
