@@ -82,12 +82,15 @@ label.chakra-checkbox.css-1577qb8 {
 .img-placeholder {
     position: relative;
     max-width: 350px;
+    height: 250px;
     margin: 15px 0;
     display: flex;
     justify-content: left;
 }
 .img-placeholder img{
+    width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .cover-image-text {
     padding: 0;
