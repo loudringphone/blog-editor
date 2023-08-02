@@ -100,7 +100,7 @@ const PostList = ({currentUser, myPosts, label}) => {
             <motion.div whileTap={{scale: 0.9}}>
             <NavLink className="logo" to={`/posts/${label || labelId}`}>
 
-              <Button className="button" size='lg' variant="primary" width="100px">View all</Button>
+              <Button className="button" size='md' variant="primary" width="100px">View all</Button>
             </NavLink>
 
             </motion.div>

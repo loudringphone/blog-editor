@@ -112,7 +112,7 @@ const Header = ({currentUser, isEdited}) => {
           </div>
 
           <NavLink className="logo" to='/' onClick={handleLeave}>
-            <h3>BLOG EDITOR</h3>
+            <h3>WINSTON'S BLOG</h3>
           </NavLink>
         </div>
 
