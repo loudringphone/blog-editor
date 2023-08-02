@@ -9,6 +9,7 @@ import useAuth from '../custom-hook/useAuth'
 
 export const Layout = () => {
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isEdited, setIsEdited] = useState(false)
   const currentUser = useAuth()
   useEffect(() => {
     if (currentUser) {
@@ -40,6 +41,11 @@ export const Layout = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const editing = (boolean) => {
+    setIsEdited(boolean)
+  }
+
   const {pathname} = useLocation()
   return (
     <>  
@@ -51,10 +57,10 @@ export const Layout = () => {
       {pathname === '/checkouts' ? (
         <></>
       ):(
-        <Header currentUser={currentUser}/>
+        <Header currentUser={currentUser} isEdited={isEdited}/>
       )}
         <main>
-          <Routers currentUser={currentUser}/>
+          <Routers currentUser={currentUser} editing={editing} />
         </main>
       
     </>

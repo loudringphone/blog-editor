@@ -10,10 +10,9 @@ import Logout from '../pages/Logout'
 import ProtectedRoute from "./ProtectedRoute";
 
 
-const Routers = (props) => {
+const Routers = ({currentUser, editing}) => {
     const {pathname} = useLocation();
     const [prevLocation, setPrevLocation] = useState(null);
-    const {currentUser} = props
     
     useEffect(() => {
         if (pathname !== '/account/login') {
@@ -30,7 +29,7 @@ const Routers = (props) => {
 
           <Route path='edit/:postId' element={
             <ProtectedRoute>
-              <Edit currentUser={currentUser} />
+              <Edit currentUser={currentUser} editing={editing} />
             </ProtectedRoute>} />
           <Route path='create' element={
             <ProtectedRoute>
@@ -38,7 +37,7 @@ const Routers = (props) => {
             </ProtectedRoute>} />
           <Route path='create/:postId' element={
             <ProtectedRoute>
-              <Edit currentUser={currentUser} />
+              <Edit currentUser={currentUser} editing={editing} />
             </ProtectedRoute>} />
           <Route path='my-posts' element={
             <ProtectedRoute>

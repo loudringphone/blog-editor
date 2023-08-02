@@ -12,7 +12,7 @@ import { Checkbox, Input, Button, ButtonGroup, Textarea } from '@chakra-ui/react
 import { deletePost } from '../../functions/deletePost';
 import { useNavigate } from 'react-router-dom';
 
-const Editor = ({post}) => {
+const Editor = ({post, editing}) => {
   const navigate = useNavigate()
   const [label, setLabel] = useState(post.label)
   const [title, setTitle] = useState(post.title)
@@ -27,6 +27,13 @@ const Editor = ({post}) => {
   useEffect(() => {
     setArticle(post.article || '');
   }, [post.article]);
+  useEffect(() => {
+    if (article == post.article) {
+      editing(false)
+    } else {
+      editing(true)
+    }
+  }, [article]);
   const handleCancel = () => {
     const currentURL = window.location.href;
     const segments = currentURL.split('/');
@@ -86,14 +93,9 @@ const Editor = ({post}) => {
   };
   return (
     <div className="edit-article">
+      <div className="editor-left">
       <TitleBlock post={post} updatingLabel={updatingLabel} updatingTitle={updatingTitle} updatingPreview={updatingPreview}/>
-      <div className="whole-article">
-      <Input
-        value={imageUrl}
-        onChange={handleImageUrlInput}
-        type='url'
-        _placeholder={{ color: 'gray.400' }}
-        placeholder='Cover Image URL'/>
+      
         <div className='img-placeholder'>
         { imageUrl ?
           <img src={imageUrl} alt={imageUrl} />
@@ -101,6 +103,15 @@ const Editor = ({post}) => {
         <h2 className="cover-image-text">Cover image</h2>
 
         </div>
+        <Input
+        value={imageUrl}
+        onChange={handleImageUrlInput}
+        type='url'
+        _placeholder={{ color: 'gray.400' }}
+        placeholder='Cover Image URL'/>
+      </div>
+      <div className="whole-article">
+      
       <div id="editor">
         <EditorToolbar />
         {!article || article.length == 0 ?
@@ -111,22 +122,22 @@ const Editor = ({post}) => {
         <div onClick={handleFocus}>
         <ReactQuill ref={editorRef} theme="snow" modules={modules} value={article} onChange={setArticle}/>
         </div>
-        <Checkbox size="md" isChecked={draft} onChange=
-          {handleDraft}>Draft?</Checkbox>
         <ButtonGroup className="buttons">
-          <motion.div whileTap={{scale: 0.9}}>
-            <Button className="button" variant="secondary" onClick=
-          {handleCancel} width="85px">Cancel</Button>
-          </motion.div>
-          {saved?
-              <Button className="button" variant="saved" width="85px">Saved</Button>
-        :
+          <Checkbox size="md" isChecked={draft} onChange=
+            {handleDraft}>Draft?</Checkbox>
+          <div className='cancel-save'>
             <motion.div whileTap={{scale: 0.9}}>
-              <Button className="button" variant="primary" onClick={handleSave} width="85px">Save</Button>
+              <Button className="button" variant="secondary" onClick=
+                {handleCancel} width="85px">Cancel</Button>
             </motion.div>
-        
-        }
-          
+            {saved?
+              <Button className="button" variant="saved" width="85px">Saved</Button>
+            :
+              <motion.div whileTap={{scale: 0.9}}>
+                <Button className="button" variant="primary" onClick={handleSave} width="85px">Save</Button>
+              </motion.div>
+            }
+          </div>
         </ButtonGroup>
       </div>
       </div>

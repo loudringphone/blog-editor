@@ -7,6 +7,11 @@
     height: max-content;
 }
 
+.editor-left {
+    display: flex;
+    flex-direction: column;
+}
+
 #editor {
     display: flex;
     position: relative;
@@ -48,10 +53,11 @@
 }
 
 .buttons {
-    margin-top: 15px;
-    align-self: flex-end;
+    align-items: baseline;
+}
+.cancel-save {
     display: flex;
-    justify-content: right;
+    gap: 12px;
 }
 
 #editor input.chakra-input {
@@ -63,7 +69,7 @@
 
 label.chakra-checkbox.css-1577qb8 {
     margin-top: 1rem;
-    margin-left: auto;
+    margin-right: auto;
 }
 .cover-image {
     display: flex;
@@ -75,10 +81,10 @@ label.chakra-checkbox.css-1577qb8 {
 
 .img-placeholder {
     position: relative;
-    height: 150px;
+    max-width: 350px;
     margin: 15px 0;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 .img-placeholder img{
     height: 100%;

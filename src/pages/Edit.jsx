@@ -7,7 +7,7 @@ import { db } from '../firebase_setup/firebase';
 import '../styles/edit.css';
 import { Beforeunload } from "react-beforeunload";
 
-const Edit = ({currentUser}) => {
+const Edit = ({currentUser, editing}) => {
     let {postId} = useParams()
     const [post, setPost] = useState([]);
     const [updated, setUpdated] = useState(false);
@@ -72,8 +72,8 @@ const Edit = ({currentUser}) => {
     return (
       <Beforeunload onBeforeunload={handleEditBeforeunload}>
         <section className='edit'>
-            <Editor post={post} />
-            <ImageUploader currentUser={currentUser} images={post.images} postId={post.id} isUpdated={isUpdated}/>
+            <Editor post={post} editing={editing} />
+            <ImageUploader currentUser={currentUser} images={post.images} postId={post.id} isUpdated={isUpdated} />
         </section>
         </Beforeunload>
     )

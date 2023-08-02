@@ -63,10 +63,10 @@ const TitleBlock = ({post, updatingLabel, updatingTitle, updatingPreview}) => {
             <p className="author">{post.author}</p>
             <p className="publish-date">{postDate}</p>
         </div>
-        <div className="blog-preview" onClick={handlePreviewClick}>
+        {/* <div className="blog-preview" onClick={handlePreviewClick}>
           <h2 style={{fontWeight: "bold"}}>Preview</h2>
           <textarea placeholder="Preview" type="text" value={updatedPreview} onInput={handlePreviewChange} onBlur={handlePreviewBlur}/>
-        </div>
+        </div> */}
 
     </div>
   )

@@ -8,10 +8,9 @@ import '../../styles/header.css';
 
 
 
-const Header = (props) => {
+const Header = ({currentUser, isEdited}) => {
   const {pathname} = useLocation();
   const currentPath =  pathname.split('/')[1]
-  const {currentUser} = props
   const navigate = useNavigate
   let nav_links
 
@@ -87,7 +86,7 @@ const Header = (props) => {
   };
 
   const handleLeave = (e) => {
-    if (currentPath == 'edit' || currentPath == 'create') {
+    if (isEdited && currentPath == 'edit' || currentPath == 'create') {
       const leaveConfirmation = window.confirm("Are you sure you want to leave? Changes you made may not be saved.");
       if (!leaveConfirmation) {
         e.preventDefault();

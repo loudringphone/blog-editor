@@ -1,8 +1,8 @@
 .title-block {
   display: flex;
-  position: sticky;
-  height: 100%;
-  top: 105px;
+  // position: sticky;
+  // height: 100%;
+  // top: 105px;
   flex-direction: column;
   max-width: 350px;
     .label {
@@ -24,8 +24,9 @@
         overflow: hidden;
         border: 1px solid #ccc;
         border-radius: 10px;
-        min-height: 325px;
+        min-height: 300px;
         width: 100%;
+        line-height: 1.25;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 38px;
@@ -34,6 +35,7 @@
       textarea::placeholder {
         color: rgb(198, 197, 197);
         font-weight: 400;
+        
       }
     }
     .blog-preview {
