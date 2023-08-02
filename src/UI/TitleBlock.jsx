@@ -12,11 +12,6 @@ const TitleBlock = ({post, updatingLabel, updatingTitle, updatingPreview}) => {
   if (post.date) {
     postDate = formatDate(new Timestamp(post.date.seconds, post.date.nanoseconds).toDate())
   }
-  const handleLabelClick = () => {
-    if (post.label === "") {
-        updatingLabel("Tips")
-    }
-  }
   const handleTitleClick = () => {
     if (!updatedTitle) {
         setUpdatedTitle(post.title)

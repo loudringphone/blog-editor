@@ -22,7 +22,7 @@ const ImageUpload = ({ currentUser, images, isUpdated, postId }) => {
           const imageName = getCurrentDate() + '-' + uuidv4() + '.' + fileExtension
           console.log(imageName)
           setProgresspercent(0.1);
-          const storageRef = ref(storage, `${currentUser.email}/${postId}/images/${imageName}`);
+          const storageRef = ref(storage, `${currentUser.email}/images/${postId}/${imageName}`);
           const uploadTask = uploadBytesResumable(storageRef, file);
           uploadTask.on("state_changed", (snapshot) => {
             const progress =

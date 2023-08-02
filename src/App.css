@@ -11,6 +11,7 @@
 
 main {
   min-height: 80vh;
+  max-width: 100%;
   margin-top: 0px;
   padding: 20px 10px;
   display: flex !important;
@@ -23,13 +24,16 @@ section.edit {
   margin-top: 0px;
 }
 p {
-  font-size: 16px;
+  font-size: medium;
   padding: 10px 0;
 }
 h2 {
-  font-size: 20.45px;
+  font-size: large;
   font-weight: 400;
   padding: 10px 0;
+}
+h1 {
+  font-size: xx-large;
 }
 * {
   font-family: 'Poppins', sans-serif;

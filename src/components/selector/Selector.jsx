@@ -1,6 +1,5 @@
 import { useState, useRef} from 'react'
 import './selector.scss'
-import { capitaliseFirstLetter } from '../../functions/capitaliseFirstLetter';
 
 const Selector = ({postLabel, updatingLabel}) => {
   const [updatedLabel, setUpdatedLabel] = useState(null)
@@ -13,8 +12,8 @@ const Selector = ({postLabel, updatingLabel}) => {
       setInput(true)
     }
     else if (value != 'Custom') {
-      setUpdatedLabel(capitaliseFirstLetter(value))
-      updatingLabel(capitaliseFirstLetter(value))
+      setUpdatedLabel(value)
+      updatingLabel(value)
     } else {
       setInput(true)
       setUpdatedLabel('')
@@ -29,11 +28,11 @@ const Selector = ({postLabel, updatingLabel}) => {
     if (value === '') {
       setUpdatedLabel(postLabel)
       updatingLabel(postLabel)
-      if (capitaliseFirstLetter(postLabel) == 'Tips' || capitaliseFirstLetter(postLabel) == 'Recycling') {
+      if (postLabel == 'projects' || postLabel == 'articles') {
         setInput(false)
       }
     }
-    if (capitaliseFirstLetter(value) == 'Tips' || capitaliseFirstLetter(value) == 'Recycling') {
+    if (value == 'projects' || value == 'articles') {
       setInput(false)
     }
   }
@@ -48,8 +47,8 @@ const Selector = ({postLabel, updatingLabel}) => {
         value={(updatedLabel || postLabel) || 'Add'}
       >
         <option value="Add">Add label</option>
-        <option value="Tips">Tips</option>
-        <option value="Recycling">Recycling</option>
+        <option value="projects">Projects</option>
+        <option value="articles">Articles</option>
         <option value="Custom">Custom label</option>
 
       </select>

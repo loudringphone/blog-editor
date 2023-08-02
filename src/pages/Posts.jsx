@@ -12,21 +12,17 @@ const Posts = ({currentUser, myPosts, home}) => {
     const loadingDone = (boolean) => {
       setIsLoaded(boolean)
     }
-    const handleView = () => {
-
-    }
-
 
     if (pathname == '/' || pathname == '/home') {
       return (
         <>
         <section className='posts'>
        
-            <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='Recycling' />
+            <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='projects' />
         </section>
         <section className='posts'>
              
-            <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='Tips' />
+            <PostList myPosts={myPosts} currentUser={currentUser} home={home} loadingDone={loadingDone} label='articles' />
         </section>
         </>
         

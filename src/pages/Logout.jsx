@@ -14,6 +14,7 @@ const Logout = () => {
         const logout = async () => {
           try {
             await signOut(auth).then(() => {
+              console.log('logout')
               toast.dismiss();
               toast.success("Successfully logged out.", { autoClose: 1500 });
             }).catch(error => {

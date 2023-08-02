@@ -54,7 +54,7 @@ const Editor = ({post, editing}) => {
     }
     const postRef = doc(db, "posts", post.id);
       await updateDoc(postRef, {
-        label: label || post.label,
+        label: label.toLowerCase() || post.label,
         title: title || post.title,
         preview: preview || post.preview,
         image: imageUrl || post.image,

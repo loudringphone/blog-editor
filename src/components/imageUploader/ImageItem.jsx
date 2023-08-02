@@ -39,10 +39,20 @@ const ImageItem = ({ postId, images, image, isUpdated }) => {
                 images: images
               })
         })
-        .then(() => { isUpdated(true) })
+        .then(() => { return isUpdated(true) })
         .catch((error) => {
             console.error('Error deleting file:', error);
-        });
+        })
+        .then(() => {
+          const postRef = doc(db, "posts", postId);
+          images.splice(images.indexOf(image), 1);
+          updateDoc(postRef, {
+            images: images
+          })
+        })
+        .then(() => {
+          isUpdated(true)
+        })
     }
     return (
         <>

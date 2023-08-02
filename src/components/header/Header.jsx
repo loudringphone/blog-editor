@@ -16,22 +16,28 @@ const Header = ({currentUser, isEdited}) => {
 
   if (currentUser && currentPath != 'create') {
     nav_links = [
-        {path: 'posts', display: 'All posts'},
-        {path: 'create', display: 'Create post'},
-        {path: 'my-posts', display: 'My posts'},
-        {path: 'account/logout', display: 'Logout'},
-        ];
-  } else if (currentUser && currentPath == 'create') {
-    nav_links = [
-      {path: 'posts', display: 'All posts'},
+      {path: 'posts/all', display: 'All posts'},
+      {path: 'posts/projects', display: 'Projects'},
+      {path: 'posts/articles', display: 'Articles'},
+      {path: 'create', display: 'Create post'},
       {path: 'my-posts', display: 'My posts'},
       {path: 'account/logout', display: 'Logout'},
-      ];
+    ];
+  } else if (currentUser && currentPath == 'create') {
+    nav_links = [
+      {path: 'posts/all', display: 'All posts'},
+      {path: 'posts/projects', display: 'Projects'},
+      {path: 'posts/articles', display: 'Articles'},
+      {path: 'my-posts', display: 'My posts'},
+      {path: 'account/logout', display: 'Logout'},
+    ];
   } else {
     nav_links = [
-        {path: 'posts', display: 'All posts'},
-        {path: 'account/login', display: 'Login'},
-        ];
+      {path: 'posts/all', display: 'All posts'},
+      {path: 'posts/projects', display: 'Projects'},
+      {path: 'posts/articles', display: 'Articles'},
+      {path: 'account/login', display: 'Login'},
+    ];
   }
   
   const [headerStyle, setHeaderStyle] = useState(null);

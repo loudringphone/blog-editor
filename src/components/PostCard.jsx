@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import '../styles/card.css';
 import { deletePost } from '../functions/deletePost';
 import { toast } from "react-toastify"
+import { capitaliseFirstLetter } from '../functions/capitaliseFirstLetter';
 
 const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
   let postDate
@@ -38,14 +39,14 @@ const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
           />
         </CardHeader>
         <CardBody>
-          <span className="subtitle"> {post.label}</span>
+          <span className="subtitle"> {capitaliseFirstLetter(post.label)}</span>
           <Text>
             {post.title}
           </Text>
           <span className="date">{postDate}</span>
         </CardBody>
       </NavLink>
-      <CardFooter
+      {/* <CardFooter
         justify={myPosts? 'space-evenly' : 'right'}
         flexWrap='wrap'
         sx={{
@@ -80,7 +81,7 @@ const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
           )
         }
         </ButtonGroup>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

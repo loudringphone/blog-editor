@@ -1,11 +1,15 @@
 .chakra-card__header.css-1sl53ol {
     padding: 0;
+    height: 200px;
 }
 .chakra-card.css-gofeqz {
     overflow: hidden;
     max-width: 275px;
     max-height: 420px;
     min-width: 200px;
+}
+img.chakra-image.css-15isfyd {
+    width: 100%;
 }
 p.chakra-text.css-0 {
     text-align: left;

@@ -9,19 +9,26 @@ import '../styles/posts.scss'
 import processing from '../assets/images/loading.gif'
 
 const PostList = ({currentUser, myPosts, label}) => {
+    const {labelId} = useParams()
     const {pathname} = useLocation();
-    const params = useParams()
     const [posts, setPosts] = useState([]);
     const [updated, setUpdated] = useState(true);
     const [loading, setLoading] = useState(true);
+
     const fetchPosts = async () => {
       let q = query(collection(db, "posts"), where("draft", "==", false))
-    
       if (label) {
         q = query(
           collection(db, "posts"),
           where("draft", "==", false),
           where("label", "==", label)
+        );
+      }
+      if (labelId && labelId != 'all') {
+        q = query(
+          collection(db, "posts"),
+          where("draft", "==", false),
+          where("label", "==", labelId)
         );
       }
       if (currentUser?.email && myPosts) {
@@ -53,7 +60,7 @@ const PostList = ({currentUser, myPosts, label}) => {
     }
     useEffect(()=>{
       fetchPosts()
-    }, [currentUser, pathname])
+    }, [currentUser, labelId])
     useEffect(()=>{
       if (!updated) {
         fetchPosts()
@@ -65,7 +72,7 @@ const PostList = ({currentUser, myPosts, label}) => {
       setUpdated(boolean);
     };
 
-    if (loading && label == 'Tips' && (pathname == '/' || pathname == '/home')) {
+    if (loading && label == 'articles' && (pathname == '/' || pathname == '/home')) {
       return (
         <></>
       )
@@ -80,14 +87,18 @@ const PostList = ({currentUser, myPosts, label}) => {
       )
     }
     
-    if (pathname == '/' || pathname == '/home') {
+    if (labelId || pathname == '/' || pathname == '/home') {
       return (
         <>
           <div className='title-wrapper'>
-            <h1>Ridly's {label}</h1>
+            { labelId === 'all' ?
+              <h1>All posts</h1>
+            :
+              <h1>Winston's {label || labelId}</h1>
+            }
           
             <motion.div whileTap={{scale: 0.9}}>
-            <NavLink className="logo" to={`/posts/${label.toLowerCase()}`}>
+            <NavLink className="logo" to={`/posts/${label || labelId}`}>
 
               <Button className="button" size='lg' variant="primary" width="100px">View all</Button>
             </NavLink>
