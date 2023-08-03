@@ -46,7 +46,7 @@ const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
           <span className="date">{postDate}</span>
         </CardBody>
       </NavLink>
-      {/* <CardFooter
+      <CardFooter
         justify={myPosts? 'space-evenly' : 'right'}
         flexWrap='wrap'
         sx={{
@@ -81,7 +81,7 @@ const PostCard = ({ post, userEmail, myPosts, isUpdated }) => {
           )
         }
         </ButtonGroup>
-      </CardFooter> */}
+      </CardFooter>
     </Card>
   );
 };

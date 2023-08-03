@@ -4,8 +4,10 @@
 }
 .chakra-card.css-gofeqz {
     overflow: hidden;
+    width: 100%;
     max-width: 275px;
-    max-height: 420px;
+    /* max-height: 420px; */
+    height: 100%;
     min-width: 200px;
 }
 img.chakra-image.css-15isfyd {
