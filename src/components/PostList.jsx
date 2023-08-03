@@ -99,14 +99,17 @@ const PostList = ({currentUser, myPosts, label}) => {
             :
               <h1>Winston's {label || labelId}</h1>
             }
-          
-            <motion.div whileTap={{scale: 0.9}}>
-            <NavLink className="logo" to={`/posts/${label || labelId}`}>
-
-              <Button className="button" size='md' variant="primary" width="100px">View all</Button>
-            </NavLink>
-
-            </motion.div>
+            {
+              labelId ?
+              <></>
+            :
+              <motion.div whileTap={{scale: 0.9}}>
+              <NavLink className="logo" to={`/posts/${label || labelId}`}>
+                <Button className="button" size='md' variant="primary" width="100px">View all</Button>
+              </NavLink>
+              </motion.div>
+            }
+            
           </div>
           <div className='post-list'>
             {posts?.map((post) => (
