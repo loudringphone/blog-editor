@@ -34,10 +34,13 @@ const ImageItem = ({ postId, images, image, isUpdated }) => {
         .then(() => {
             console.log('File successfully deleted!');
             const postRef = doc(db, "posts", postId);
-              images.splice(images.indexOf(image), 1);
+            const imageIndex = images.indexOf(image);
+            if (imageIndex > 0) {
+              images.splice(imageIndex, 1);
               updateDoc(postRef, {
                 images: images
               })
+            }
         })
         .then(() => { return isUpdated(true) })
         .catch((error) => {
@@ -45,10 +48,13 @@ const ImageItem = ({ postId, images, image, isUpdated }) => {
         })
         .then(() => {
           const postRef = doc(db, "posts", postId);
-          images.splice(images.indexOf(image), 1);
-          updateDoc(postRef, {
-            images: images
-          })
+          const imageIndex = images.indexOf(image);
+          if (imageIndex > 0) {
+            images.splice(imageIndex, 1);
+            updateDoc(postRef, {
+              images: images
+            })
+          }
         })
         .then(() => {
           isUpdated(true)

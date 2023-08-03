@@ -81,6 +81,7 @@ const Post = ({currentUser}) => {
               
             </div>
             <div className="blog-post-content">
+              <img src={post.image} alt={post.title} />
               <HtmlRenderer htmlString={post.article} />
             </div>
         </section>
