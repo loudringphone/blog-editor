@@ -3,27 +3,21 @@ a.logo {
 }
 a.logo h3 {
     line-height: 1;
+    font-weight: 600;
+    font-size: xxx-large;
+    display: inline-block;
     text-align: right;
     color: #0b5d51;
+    background: url('../assets/images/green.gif');
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 
 body.scroll-locked {
     overflow: hidden;
     touch-action: manipulation;
-}
-
-.header .logo img {
-    max-width: 50px;
-    max-height: 50px;
-    align-self: center;
-    display: inline-block;
-}
-
-.header .logo h3 {
-    font-weight: 600;
-    font-size: xxx-large;
-    display: inline-block;
 }
 
 header.header {
