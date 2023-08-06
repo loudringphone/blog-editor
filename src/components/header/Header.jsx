@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import MenuLineIcon from 'remixicon-react/MenuLineIcon';
 import CloseLineIcon from 'remixicon-react/CloseLineIcon';
 import HomeLineIcon from 'remixicon-react/HomeLineIcon';
@@ -11,7 +11,6 @@ import '../../styles/header.css';
 const Header = ({currentUser, isEdited}) => {
   const {pathname} = useLocation();
   const currentPath =  pathname.split('/')[1]
-  const navigate = useNavigate
   let nav_links
 
   if (currentUser && currentPath != 'create') {
