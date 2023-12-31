@@ -1,2 +1,4 @@
 # Winston's Blog
 I wanted to express my gratitude to Daniel Lord-Doyle for recognizing my efforts! He presented me with a challenge to create a headless CMS that could be for real business use. This CMS will enable non-technical staff to effortlessly update blog posts on the company website. Using React JS and Firebase, along with the npm package Quill as a text editor, I completed the project in just four days. Interestingly, the CMS I created turned into my personal blog, where I've shared my projects and articles for everyone to read. It was a rewarding experience to work on and I thoroughly enjoyed the process of building and creating something useful. Looking ahead, I am excited to take on the next challenge of learning how to use Strapi and REMIX. You can check out my new blog to explore my projects and articles. Your feedback and support are highly appreciated!
+
+https://winstonsblog.netlify.app/
